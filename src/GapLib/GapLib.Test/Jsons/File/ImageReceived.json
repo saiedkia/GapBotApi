@@ -1,0 +1,21 @@
+﻿{
+  "chat_id": 123123,
+  "type": "image",
+  "data": {
+    "screenshots": {
+      "64": "sc1",
+      "128": "sc2",
+      "256": "sc3",
+      "512": "sc4"
+    },
+    "type": "image",
+    "path": "filePath",
+    "tags": null,
+    "width": 512,
+    "height": 512,
+    "duration": 0,
+    "filesize": 34376,
+    "filename": "image.jpeg",
+    "desc": "cap"
+  }
+}

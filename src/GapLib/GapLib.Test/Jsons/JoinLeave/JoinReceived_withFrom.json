@@ -1,0 +1,9 @@
+{
+  "chat_id": 123123,
+  "type": "join",
+  "from": {
+    "name": "saiedkia",
+    "id": 4455,
+    "username" : "userName"
+  }
+}
