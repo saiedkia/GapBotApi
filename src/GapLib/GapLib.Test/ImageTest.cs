@@ -8,9 +8,9 @@ namespace GapLib.Test
     public class ImageTest : BaseTest
     {
         [Fact]
-        public void Should_getdata_could_deserialize_data()
+        public void Should_can_deserialize_image_data()
         {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "file\\imagereceived.json"));
+            ReceivedMessage<File> value = (ReceivedMessage<File>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "file\\imagereceived.json"));
             Dictionary<string, string> screenshots = new Dictionary<string, string>
             {
                 { "64", "sc1" },
@@ -23,7 +23,7 @@ namespace GapLib.Test
             {
                 ScreenShots = screenshots,
                 Type = MessageType.Image,
-                Path = "filePath",
+                Path = "https://filePath",
                 Width = 512,
                 Height = 512,
                 Filesize = 34376,
@@ -31,7 +31,26 @@ namespace GapLib.Test
                 Desc = "cap"
             };
 
-            expectedImageFile.Should().BeEquivalentTo(value.GetData());
+            ReceivedMessage<File> expectedmessage = new ReceivedMessage<File>()
+            {
+                Chat_Id = 123123,
+                Type = MessageType.Image,
+                Data = expectedImageFile
+            };
+
+
+            value.Should().BeEquivalentTo(expectedmessage);
+            expectedImageFile.Should().BeEquivalentTo(value.Data);
         }
+
+        [Fact]
+        public void Data_sould_be_null()
+        {
+            ReceivedMessage<File> value = (ReceivedMessage<File>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "file\\imagereceived_nullData.json"));
+
+            Assert.Null(value.Data);
+        }
+
+
     }
 }

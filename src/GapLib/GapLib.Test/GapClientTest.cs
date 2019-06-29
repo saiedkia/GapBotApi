@@ -11,7 +11,7 @@ namespace GapLib.Test
         public void Should_get_invalid_token_error_on_send_text_message()
         {
             GapClient gapClient = new GapClient("token"/*Utils.ReadValue("token", TokenDirectory)*/);
-            Message message = new TextMessage
+            Message message = new Message()
             {
                 Chat_Id = "+989366727432", // invalid chat id
                 Data = "salam iran"
@@ -39,7 +39,7 @@ namespace GapLib.Test
                 new ReplyKeyboardContactItem("contact")
             });
 
-            Message message = new TextMessage
+            Message message = new Message
             {
                 Chat_Id = "+989366727432", 
                 Data = "salam iran",

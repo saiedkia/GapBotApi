@@ -1,0 +1,8 @@
+﻿{
+  "chat_id": 123123,
+  "type": "contact",
+  "data": {
+    "name": "Ehsan Sabet",
+    "phone": "+989356167766"
+  }
+}

@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using GapLib.Model;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace GapLib.Test
@@ -10,17 +9,17 @@ namespace GapLib.Test
         [Fact]
         public void Should_message_equal_hi_saied()
         {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "text\\textreceived.json"));
+            ReceivedMessage<string> value = (ReceivedMessage<string>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "text\\textreceived.json"));
 
-            ReceivedMessage expected = new ReceivedMessage
+            ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
                 Chat_Id = 123123,
-                Type = MessageType.Join,
-                Data = new JRaw("hi saied!!!")
+                Type = MessageType.Text,
+                Data = "hi saied!!!"
             };
 
 
-            value.Data.Value.Should().Equals(expected.Data.Value);
+            value.Should().BeEquivalentTo(expected);
         }
     }
 }

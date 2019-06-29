@@ -21,7 +21,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Jsons\File\LocationReceived.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Jsons\File\ContactReceived.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Jsons\File\ImageReceived_nullData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Jsons\File\ImageReceived.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Jsons\Form\FormRecevied.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Jsons\JoinLeave\JoinReceived_withFrom.json">

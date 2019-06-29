@@ -7,7 +7,7 @@ namespace GapLib
 {
     public class GapClient
     {
-        string baseUrl = "https://api.gap.im/sendMessage";
+        readonly string baseUrl = "https://api.gap.im/sendMessage";
         HttpClient _client = new HttpClient();
 
         public string Token { get; set; }
@@ -36,6 +36,7 @@ namespace GapLib
 
             return result;
         }
+
 
 
         private FormUrlEncodedContent MakeUrl(Message message)
