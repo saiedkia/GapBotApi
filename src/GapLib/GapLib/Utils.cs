@@ -9,7 +9,7 @@ namespace GapLib
     {
         public static string ReadValue(string key, string filePath = null)
         {
-            string path = filePath ?? Directory.GetCurrentDirectory() + "\\TestConfigurations.json";
+            string path = filePath ?? Directory.GetCurrentDirectory() + "\\Configurations.json";
             if (File.Exists(path))
             {
                 string jsonContent = File.ReadAllText(path);

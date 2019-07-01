@@ -57,7 +57,7 @@
     <None Update="Jsons\Text\TextReceived.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="TestConfigurations.json">
+    <None Update="Configurations.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
