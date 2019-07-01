@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System.IO;
 
 namespace GapLib
@@ -8,7 +9,7 @@ namespace GapLib
     {
         public static string ReadValue(string key, string filePath = null)
         {
-            string path = filePath ?? Directory.GetCurrentDirectory() + "\\db.json";
+            string path = filePath ?? Directory.GetCurrentDirectory() + "\\TestConfigurations.json";
             if (File.Exists(path))
             {
                 string jsonContent = File.ReadAllText(path);
@@ -34,7 +35,12 @@ namespace GapLib
 
         public static string Serialize(object obj)
         {
-            return JsonConvert.SerializeObject(obj);
+            JsonSerializerSettings setting = new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return JsonConvert.SerializeObject(obj, setting);
         }
     }
 }

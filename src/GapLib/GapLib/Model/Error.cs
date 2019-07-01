@@ -24,6 +24,7 @@
     {
         Success = 200,
         InvalidChatIdOrToken = 403,
-        Genereic = 400
+        Genereic = 400,
+        InvalidFileTypeOrSize = 500
     }
 }

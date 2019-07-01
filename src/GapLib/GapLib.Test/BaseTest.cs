@@ -4,7 +4,9 @@ namespace GapLib.Test
 {
     public class BaseTest
     {
-        public string BaseDirectory => Directory.GetCurrentDirectory() + "\\jsons\\";
-        public string TokenDirectory => Directory.GetCurrentDirectory() + "\\TestConfigurations.json";
+        public string JsonsDirectory => Directory.GetCurrentDirectory() + "\\jsons\\";
+        public string FilesDirectory => Directory.GetCurrentDirectory() + "\\files\\";
+        public string ChatId => Utils.ReadValue("chat_id");
+        public string Token => Utils.ReadValue("token");
     }
 }

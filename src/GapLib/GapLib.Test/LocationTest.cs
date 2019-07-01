@@ -9,7 +9,7 @@ namespace GapLib.Test
         [Fact]
         public void Read_Location_information()
         {
-            ReceivedMessage<Location> receivedMessage = (ReceivedMessage<Location>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "file\\locationreceived.json"));
+            ReceivedMessage<Location> receivedMessage = (ReceivedMessage<Location>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "file\\locationreceived.json"));
 
             Location expectedLocation = new Location()
             {

@@ -9,7 +9,7 @@ namespace GapLib.Test
         [Fact]
         public void Should_deserialize_and_get_currect_object_join()
         {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "JoinLeave\\JoinReceived.json"));
+            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
                 Chat_Id = 123123,
@@ -22,7 +22,7 @@ namespace GapLib.Test
         [Fact]
         public void Should_deserialize_and_get_currect_object_leave()
         {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "JoinLeave\\LeaveReceived.json"));
+            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\LeaveReceived.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
                 Chat_Id = 123123,
@@ -35,7 +35,7 @@ namespace GapLib.Test
         [Fact]
         public void Should_deserialize_and_get_currect_object_join_with_from_sender_detail()
         {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "JoinLeave\\JoinReceived_withFrom.json"));
+            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived_withFrom.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
                 Chat_Id = 123123,

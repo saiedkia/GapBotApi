@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using GapLib.Model;
+using System.Collections.Generic;
 using Xunit;
 
 namespace GapLib.Test
@@ -9,7 +10,7 @@ namespace GapLib.Test
         [Fact]
         public void Read_form_information()
         {
-            ReceivedMessage<Form> receivedMessage = (ReceivedMessage<Form>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "form\\FormRecevied.json"));
+            ReceivedMessage<Form> receivedMessage = (ReceivedMessage<Form>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "form\\FormRecevied.json"));
 
             Form expectedForm = new Form()
             {
@@ -19,6 +20,7 @@ namespace GapLib.Test
             };
 
             receivedMessage.Data.ParseData().Should().BeEquivalentTo(expectedForm.ParseData());
+            Assert.Contains(new KeyValuePair<string, string>("name", "Ehsan"), receivedMessage.Data.ParseData());
         }
     }
 }

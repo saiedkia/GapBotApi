@@ -10,10 +10,10 @@ namespace GapLib.Test
         [Fact]
         public void Should_get_invalid_token_error_on_send_text_message()
         {
-            GapClient gapClient = new GapClient("token"/*Utils.ReadValue("token", TokenDirectory)*/);
+            GapClient gapClient = new GapClient(Utils.ReadValue("token"));
             Message message = new Message()
             {
-                Chat_Id = "+989366727432", // invalid chat id
+                Chat_Id = "invalid id", // invalid chat id
                 Data = "salam iran"
             };
 
@@ -25,7 +25,7 @@ namespace GapLib.Test
         [Fact]
         public void Should_send_successfully_and_had_four_button_in_two_row()
         {
-            GapClient gapClient = new GapClient(Utils.ReadValue("token", TokenDirectory));
+            GapClient gapClient = new GapClient(Token);
             ReplyKeyboard keyboard = new ReplyKeyboard();
             keyboard.AddRow(new List<ReplyKeyboardItem>()
             {
@@ -41,7 +41,7 @@ namespace GapLib.Test
 
             Message message = new Message
             {
-                Chat_Id = "+989366727432", 
+                Chat_Id = ChatId, 
                 Data = "salam iran",
                 ReplyKeyboard = keyboard
             };
@@ -49,6 +49,78 @@ namespace GapLib.Test
 
             PostResult result = gapClient.Send(message).Result;
             result.StatusCode.Should().Be(StatusCode.Success);
+        }
+
+
+
+        [Fact]
+        public void Upload_successfully_an_image()
+        {
+            GapClient gapClient = new GapClient(Token);
+            Message msg = new Message(MessageType.Image);
+            PostResult result = gapClient.Upload(FilesDirectory + "godzila.jpg", "godzila.jpg", UploadFileType.Image, "coolzila :)").Result;
+
+            result.StatusCode.Should().Be(StatusCode.Success);
+            File file = Utils.Deserialize<File>(result.Message);
+            file.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Upload_and_send_an_image_to_the_client()
+        {
+            GapClient gapClient = new GapClient(Token);
+            string fileDescription = "coolzila :)";
+            PostResult uploadResult = gapClient.Upload(FilesDirectory + "godzila.jpg", "godzila.jpg", UploadFileType.Image, fileDescription).Result;
+            File file = Utils.Deserialize<File>(uploadResult.Message);
+            file.Desc = fileDescription;
+            Message message = new Message(MessageType.Image)
+            {
+                Chat_Id = ChatId,
+                Data = Utils.Serialize(file)
+            };
+
+            PostResult postResult = gapClient.Send(message).Result;
+            postResult.StatusCode.Should().Be(StatusCode.Success);
+
+        }
+
+
+        [Fact]
+        public void Upload_and_send_an_textFile_to_the_client()
+        {
+            GapClient gapClient = new GapClient(Token);
+            string fileDescription = "some desc";
+            PostResult uploadResult = gapClient.Upload(FilesDirectory + "sampleText.txt", "textfile.txt", UploadFileType.File, fileDescription).Result;
+            File file = Utils.Deserialize<File>(uploadResult.Message);
+            file.Desc = fileDescription;
+            Message message = new Message(MessageType.File)
+            {
+                Chat_Id = ChatId,
+                Data = Utils.Serialize(file)
+            };
+
+            PostResult postResult = gapClient.Send(message).Result;
+            postResult.StatusCode.Should().Be(StatusCode.Success);
+
+        }
+
+        [Fact]
+        public void Upload_and_send_an_mp3_to_the_client()
+        {
+            GapClient gapClient = new GapClient(Token);
+            string fileDescription ="FiveFin"; // 4.7MB
+            PostResult uploadResult = gapClient.Upload(FilesDirectory + "FiveF.mp3", "haghighat_audio.mp3", UploadFileType.Audio, fileDescription).Result;
+            File file = Utils.Deserialize<File>(uploadResult.Message);
+            file.Desc = fileDescription;
+            Message message = new Message(MessageType.Audio)
+            {
+                Chat_Id = ChatId,
+                Data = Utils.Serialize(file)
+            };
+
+            PostResult postResult = gapClient.Send(message).Result;
+            postResult.StatusCode.Should().Be(StatusCode.Success);
+
         }
     }
 }

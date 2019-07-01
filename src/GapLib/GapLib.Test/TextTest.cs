@@ -9,7 +9,7 @@ namespace GapLib.Test
         [Fact]
         public void Should_message_equal_hi_saied()
         {
-            ReceivedMessage<string> value = (ReceivedMessage<string>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "text\\textreceived.json"));
+            ReceivedMessage<string> value = (ReceivedMessage<string>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "text\\textreceived.json"));
 
             ReceivedMessage<string> expected = new ReceivedMessage<string>
             {

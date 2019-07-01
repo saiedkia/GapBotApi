@@ -8,7 +8,7 @@ namespace GapLib.Model
         public long Message_id { get; set; }
         public string Callback_id { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ParseData()
+        public List<KeyValuePair<string, string>> ParseData()
         {
             List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
 

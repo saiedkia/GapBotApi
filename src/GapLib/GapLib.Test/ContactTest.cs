@@ -9,7 +9,7 @@ namespace GapLib.Test
         [Fact]
         public void Read_contact_information()
         {
-            ReceivedMessage<Contact> receivedMessage = (ReceivedMessage<Contact>)ReceivedMessage.Parse(Utils.ReadFile(BaseDirectory + "file\\contactreceived.json"));
+            ReceivedMessage<Contact> receivedMessage = (ReceivedMessage<Contact>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "file\\contactreceived.json"));
 
             Contact expectedContact = new Contact()
             {
