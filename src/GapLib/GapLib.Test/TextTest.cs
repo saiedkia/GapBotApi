@@ -21,5 +21,53 @@ namespace GapLib.Test
 
             value.Should().BeEquivalentTo(expected);
         }
+
+        [Fact]
+        public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_string()
+        {
+            FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
+            {
+                Chat_Id = "123123",
+                Data = "salam",
+                Type = MessageType.Text
+            };
+
+            ReceivedMessage<string> message = (ReceivedMessage<string>)receivedMessage;
+
+            ReceivedMessage<string> expected = new ReceivedMessage<string>()
+            {
+                Data = "salam",
+                Type = MessageType.Text,
+                Chat_Id = "123123",
+            };
+
+
+            message.Should().BeEquivalentTo(expected);
+        }
+
+
+
+        [Fact]
+        public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_int()
+        {
+            FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
+            {
+                Chat_Id = "123123",
+                Data = "123123",
+                Type = MessageType.Text
+            };
+
+            ReceivedMessage<int> message = (ReceivedMessage<int>)receivedMessage;
+
+            ReceivedMessage<int> expected = new ReceivedMessage<int>()
+            {
+                Data = 123123,
+                Type = MessageType.Text,
+                Chat_Id = "123123",
+            };
+
+
+            message.Should().BeEquivalentTo(expected);
+        }
     }
 }
