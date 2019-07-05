@@ -13,5 +13,11 @@
         {
             Type = messageType;
         }
+
+        public Message(ReceivedMessage receivedMessage)
+        {
+            Chat_Id = receivedMessage.Chat_Id;
+            Type = receivedMessage.Type;
+        }
     }
 }

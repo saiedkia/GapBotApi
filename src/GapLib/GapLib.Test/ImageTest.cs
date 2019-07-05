@@ -33,7 +33,7 @@ namespace GapLib.Test
 
             ReceivedMessage<File> expectedmessage = new ReceivedMessage<File>()
             {
-                Chat_Id = 123123,
+                Chat_Id = "123123",
                 Type = MessageType.Image,
                 Data = expectedImageFile
             };

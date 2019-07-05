@@ -6,7 +6,7 @@ namespace GapLib.Model
     [JsonConverter(typeof(ReceivedMessageConverter))]
     public class ReceivedMessage
     {
-        public long Chat_Id { get; set; }
+        public string Chat_Id { get; set; }
         public MessageType Type { get; set; }
         public From From { get; set; }
 
@@ -21,6 +21,7 @@ namespace GapLib.Model
         }
     }
 
+    [JsonConverter(typeof(ReceivedMessageGenericConverter))]
     public class ReceivedMessage<T> : ReceivedMessage
     {
 

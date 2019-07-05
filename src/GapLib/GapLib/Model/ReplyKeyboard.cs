@@ -33,6 +33,12 @@ namespace GapLib.Model
             Value = value;
         }
 
+        public ReplyKeyboardItem(string value)
+        {
+            Key = value;
+            Value = value;
+        }
+
 
         public override string ToString()
         {

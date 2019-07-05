@@ -13,7 +13,7 @@ namespace GapLib.Test
 
             ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
-                Chat_Id = 123123,
+                Chat_Id = "123123",
                 Type = MessageType.Text,
                 Data = "hi saied!!!"
             };
