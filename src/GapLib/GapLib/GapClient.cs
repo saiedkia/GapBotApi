@@ -69,6 +69,11 @@ namespace GapLib
             return result;
         }
 
+        public async Task Delete(string chat_id)
+        {
+            
+        }
+
 
         private FormUrlEncodedContent MakeUrl(Message message)
         {

@@ -7,9 +7,9 @@ namespace GapLib
 {
     public static class Utils
     {
-        public static string ReadValue(string key, string filePath = null)
+        public static string ReadValue(string key, string configurationsFilePath = null)
         {
-            string path = filePath ?? Directory.GetCurrentDirectory() + "./Configurations.json";
+            string path = configurationsFilePath ?? "./Configurations.json";
             if (File.Exists(path))
             {
                 string jsonContent = File.ReadAllText(path);
