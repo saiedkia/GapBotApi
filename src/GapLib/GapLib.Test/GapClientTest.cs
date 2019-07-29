@@ -122,5 +122,42 @@ namespace GapLib.Test
             postResult.StatusCode.Should().Be(StatusCode.Success);
 
         }
+
+
+        [Fact]
+        public void Delete_message()
+        {
+            GapClient gapClient = new GapClient(Token);
+
+            Message message = new Message
+            {
+                Chat_Id = ChatId,
+                Data = "salam donya"
+            };
+
+            PostResult postResult = gapClient.Send(message).Result;
+            MessageId messageId = Newtonsoft.Json.JsonConvert.DeserializeObject<MessageId>(postResult.Message);
+
+            PostResult deleteResult = gapClient.Delete(ChatId, messageId.id).Result;
+
+            deleteResult.StatusCode.Should().Be(200);
+        }
+
+        [Fact]
+        public void Delete_should_be_successfull_with_invalid_messageId()
+        {
+            GapClient gapClient = new GapClient(Token);
+
+            Message message = new Message
+            {
+                Chat_Id = ChatId,
+                Data = "salam donya"
+            };
+
+            PostResult deleteResult = gapClient.Delete(ChatId, "555555").Result;
+
+            deleteResult.StatusCode.Should().Be(200);
+        }
+
     }
 }
