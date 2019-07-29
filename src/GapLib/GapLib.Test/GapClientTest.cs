@@ -148,13 +148,19 @@ namespace GapLib.Test
         {
             GapClient gapClient = new GapClient(Token);
 
-            Message message = new Message
-            {
-                Chat_Id = ChatId,
-                Data = "salam donya"
-            };
-
             PostResult deleteResult = gapClient.Delete(ChatId, "555555").Result;
+
+            deleteResult.StatusCode.Should().Be(200);
+        }
+
+
+        // need visual assertion :)
+        [Fact]
+        public void Send_typing_action()
+        {
+            GapClient gapClient = new GapClient(Token);
+
+            PostResult deleteResult = gapClient.SendAction(ChatId).Result;
 
             deleteResult.StatusCode.Should().Be(200);
         }

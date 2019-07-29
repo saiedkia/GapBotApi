@@ -11,6 +11,7 @@ namespace GapLib
         readonly string baseUrl = "https://api.gap.im/sendMessage";
         readonly string deleteUrl = "https://api.gap.im/deleteMessage";
         readonly string uploadUrl = "https://api.gap.im/upload";
+        readonly string sendAction = "https://api.gap.im/sendAction";
 
         HttpClient _client = new HttpClient();
 
@@ -81,6 +82,33 @@ namespace GapLib
             FormUrlEncodedContent content = new FormUrlEncodedContent(values);
 
             HttpResponseMessage response = await _client.PostAsync(deleteUrl, content);
+
+            string strResponse = await response.Content.ReadAsStringAsync();
+            PostResult result = new PostResult();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    result = new PostResult(StatusCode.Genereic, strResponse);
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    result = new PostResult(StatusCode.InvalidChatIdOrToken, "invalid chat_id or phone number");
+            }
+            else
+                result = new PostResult(StatusCode.Success, strResponse);
+
+            return result;
+        }
+
+        public async Task<PostResult> SendAction(string chat_id)
+        {
+            List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("chat_id", chat_id),
+                new KeyValuePair<string, string>("type", ActionType.Typing.ToString())
+            };
+
+            FormUrlEncodedContent content = new FormUrlEncodedContent(values);
+
+            HttpResponseMessage response = await _client.PostAsync(sendAction, content);
 
             string strResponse = await response.Content.ReadAsStringAsync();
             PostResult result = new PostResult();
