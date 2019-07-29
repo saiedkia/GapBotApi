@@ -54,6 +54,9 @@
     <None Update="Jsons\JoinLeave\JoinReceived.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Jsons\Text\inlineKeyboard.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Jsons\Text\TextReceived.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

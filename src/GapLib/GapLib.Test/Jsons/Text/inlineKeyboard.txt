@@ -1,0 +1,20 @@
+[
+  [
+    {
+      "text": "simple button",
+      "cb_data": "btnSmpTapped"
+    },
+    {
+      "text": "payment",
+      "amount": "5000",
+      "currency": "IRR",
+      "ref_id": "GUID/refId",
+      "desc": "give me that.."
+    },
+    {
+      "text": "bing",
+      "url": "https://bing.com",
+      "open_in": "webview"
+    }
+  ]
+]

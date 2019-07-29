@@ -22,11 +22,6 @@ namespace GapLib.Model
         }
     }
 
-    public class FromFormReceivedMessage : ReceivedMessage
-    {
-        public string Data { get; set; }
-    }
-
     [JsonConverter(typeof(ReceivedMessageGenericConverter))]
     public class ReceivedMessage<T> : ReceivedMessage
     {

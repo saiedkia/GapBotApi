@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GapBotAPI</id>
-    <version>1.0.8</version>
+    <version>1.0.10</version>
     <authors>SaiedKia</authors>
     <owners>SaiedKia</owners>
     <licenseUrl>https://github.com/saiedkia/GapBotApi/blob/master/LICENSE</licenseUrl>
@@ -12,7 +12,7 @@
     <description>Gap messenger bot api</description>
     <releaseNotes>alpha version</releaseNotes>
     <copyright>Copyright 2019</copyright>
-    <tags>gap gap-messenger bot igap</tags>
+    <tags>gap gap-messenger bot</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="12.0.2" />
       <dependency id="NETStandard.Library" version="2.0.3" />

@@ -84,6 +84,10 @@ namespace GapLib
             if (message.ReplyKeyboard != null)
                 values.Add(new KeyValuePair<string, string>("reply_keyboard", Utils.Serialize(message.ReplyKeyboard)));
 
+            if(message.InlineKeyboard != null)
+                values.Add(new KeyValuePair<string, string>("inline_keyboard", Utils.Serialize(message.InlineKeyboard)));
+
+
             return new FormUrlEncodedContent(values);
         }
 
