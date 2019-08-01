@@ -8,10 +8,13 @@ namespace GapLib
 {
     public class GapClient
     {
-        readonly string baseUrl = "https://api.gap.im/sendMessage";
-        readonly string deleteUrl = "https://api.gap.im/deleteMessage";
-        readonly string uploadUrl = "https://api.gap.im/upload";
-        readonly string sendAction = "https://api.gap.im/sendAction";
+        const string baseUrl = "https://api.gap.im/sendMessage";
+        const string deleteUrl = "https://api.gap.im/deleteMessage";
+        const string uploadUrl = "https://api.gap.im/upload";
+        const string sendAction = "https://api.gap.im/sendAction";
+        const string editMessage = "https://api.gap.im/editMessage";
+        const string invoiceUrl = "https://api.gap.im/invoice";
+        const string invoiceVerificationUrl = "https://api.gap.im/invoice/verify";
 
         HttpClient _client = new HttpClient();
 
@@ -60,9 +63,9 @@ namespace GapLib
                     result = new PostResult(StatusCode.Genereic, strResponse);
                 else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                     result = new PostResult(StatusCode.InvalidChatIdOrToken, "invalid chat_id or phone number");
-                else if(response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     result = new PostResult(StatusCode.InvalidFileTypeOrSize, "invalid filetype or size");
-                    
+
             }
             else
                 result = new PostResult(StatusCode.Success, strResponse);
@@ -125,6 +128,68 @@ namespace GapLib
             return result;
         }
 
+        //public Task<PostResult> EditMessage(string messageId, Message message)
+        //{
+
+        //}
+
+
+        public async Task<PostResult> Invoice(Invoice invoice)
+        {
+            List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("chat_id", invoice.chat_id.ToString()),
+                new KeyValuePair<string, string>("amount", invoice.amount.ToString()),
+                new KeyValuePair<string, string>("currency", invoice.currency.ToString()),
+                new KeyValuePair<string, string>("description", invoice.description)
+            };
+
+            FormUrlEncodedContent content = new FormUrlEncodedContent(values);
+
+            HttpResponseMessage response = await _client.PostAsync(invoiceUrl, content);
+
+            string strResponse = await response.Content.ReadAsStringAsync();
+            PostResult result = new PostResult();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    result = new PostResult(StatusCode.Genereic, strResponse);
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    result = new PostResult(StatusCode.InvalidChatIdOrToken, "invalid chat_id or phone number");
+            }
+            else
+                result = new PostResult(StatusCode.Success, strResponse);
+
+            return result;
+        }
+
+        public async Task<PostResult<InvoiceVerficationResult>> InvoiceVerification(InvoiceVerfication invoice)
+        {
+            List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("chat_id", invoice.chat_id),
+                new KeyValuePair<string, string>("ref_id", invoice.ref_id),
+            };
+
+            FormUrlEncodedContent content = new FormUrlEncodedContent(values);
+
+            HttpResponseMessage response = await _client.PostAsync(invoiceVerificationUrl, content);
+
+            string strResponse = await response.Content.ReadAsStringAsync();
+            PostResult<InvoiceVerficationResult> result  = new PostResult<InvoiceVerficationResult>();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    result = new PostResult(StatusCode.Genereic, strResponse).ToType<InvoiceVerficationResult>();
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    result = new PostResult(StatusCode.InvalidChatIdOrToken, "invalid chat_id or phone number").ToType<InvoiceVerficationResult>();
+            }
+            else
+                result = new PostResult(StatusCode.Success, strResponse).ToType<InvoiceVerficationResult>();
+
+            return result;
+        }
+
 
         private FormUrlEncodedContent MakeUrl(Message message)
         {
@@ -138,7 +203,7 @@ namespace GapLib
             if (message.ReplyKeyboard != null)
                 values.Add(new KeyValuePair<string, string>("reply_keyboard", Utils.Serialize(message.ReplyKeyboard)));
 
-            if(message.InlineKeyboard != null)
+            if (message.InlineKeyboard != null)
                 values.Add(new KeyValuePair<string, string>("inline_keyboard", Utils.Serialize(message.InlineKeyboard)));
 
 

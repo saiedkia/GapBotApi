@@ -84,6 +84,7 @@ namespace GapLib.Model
     public enum Currency
     {
         IRR,
-        Coin
+        Coin,
+        USD
     }
 }

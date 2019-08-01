@@ -61,7 +61,7 @@ namespace GapLib.Test
             PostResult result = gapClient.Upload(FilesDirectory + "godzila.jpg", "godzila.jpg", UploadFileType.Image, "coolzila :)").Result;
 
             result.StatusCode.Should().Be(StatusCode.Success);
-            File file = Utils.Deserialize<File>(result.Message);
+            File file = Utils.Deserialize<File>(result.RawBody);
             file.Should().NotBeNull();
         }
 
@@ -71,7 +71,7 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             string fileDescription = "coolzila :)";
             PostResult uploadResult = gapClient.Upload(FilesDirectory + "godzila.jpg", "godzila.jpg", UploadFileType.Image, fileDescription).Result;
-            File file = Utils.Deserialize<File>(uploadResult.Message);
+            File file = Utils.Deserialize<File>(uploadResult.RawBody);
             file.Desc = fileDescription;
             Message message = new Message(MessageType.Image)
             {
@@ -91,7 +91,7 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             string fileDescription = "some desc";
             PostResult uploadResult = gapClient.Upload(FilesDirectory + "sampleText.txt", "textfile.txt", UploadFileType.File, fileDescription).Result;
-            File file = Utils.Deserialize<File>(uploadResult.Message);
+            File file = Utils.Deserialize<File>(uploadResult.RawBody);
             file.Desc = fileDescription;
             Message message = new Message(MessageType.File)
             {
@@ -110,7 +110,7 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             string fileDescription ="FiveFin"; // 4.7MB
             PostResult uploadResult = gapClient.Upload(FilesDirectory + "FiveF.mp3", "haghighat_audio.mp3", UploadFileType.Audio, fileDescription).Result;
-            File file = Utils.Deserialize<File>(uploadResult.Message);
+            File file = Utils.Deserialize<File>(uploadResult.RawBody);
             file.Desc = fileDescription;
             Message message = new Message(MessageType.Audio)
             {
@@ -136,7 +136,7 @@ namespace GapLib.Test
             };
 
             PostResult postResult = gapClient.Send(message).Result;
-            MessageId messageId = Newtonsoft.Json.JsonConvert.DeserializeObject<MessageId>(postResult.Message);
+            MessageId messageId = Newtonsoft.Json.JsonConvert.DeserializeObject<MessageId>(postResult.RawBody);
 
             PostResult deleteResult = gapClient.Delete(ChatId, messageId.id).Result;
 
@@ -163,6 +163,54 @@ namespace GapLib.Test
             PostResult deleteResult = gapClient.SendAction(ChatId).Result;
 
             deleteResult.StatusCode.Should().Be(200);
+        }
+
+        [Fact]
+        public void Sned_an_invoice_to_the_client()
+        {
+            GapClient gapClient = new GapClient(Token);
+            Invoice invoice = new Invoice()
+            {
+                chat_id = ChatId,
+                amount = 20_000,
+                currency = Currency.USD,
+                description = "no comment"
+            };
+
+            PostResult invoiceResult = gapClient.Invoice(invoice).Result;
+
+            invoiceResult.StatusCode.Should().Be(200);
+            invoiceResult.Id.Should().NotBeNull();
+        }
+
+
+        [Fact]
+        public void Should_get_error_on_response_because_invoice_not_payd()
+        {
+            GapClient gapClient = new GapClient(Token);
+            Invoice invoice = new Invoice()
+            {
+                chat_id = ChatId,
+                amount = 20_000,
+                currency = Currency.USD,
+                description = "no comment"
+            };
+
+            PostResult invoiceResult = gapClient.Invoice(invoice).Result;
+
+            InvoiceVerfication invoiceVerfication = new InvoiceVerfication()
+            {
+                chat_id = ChatId,
+                ref_id = invoiceResult.Id
+            };
+
+            PostResult<InvoiceVerficationResult> verificationResult = gapClient.InvoiceVerification(invoiceVerfication).Result;
+
+
+            verificationResult.Id.Should().BeNull();
+            verificationResult.ErrorMessage.Should().BeNull();
+            verificationResult.StatusCode.Should().Be(200);
+            verificationResult.Data.status.Should().Be(InvoiceStatus.Error);
         }
 
     }
