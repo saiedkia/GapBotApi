@@ -10,9 +10,9 @@ namespace GapLib.Test
         [Fact]
         public void Read_form_information()
         {
-            ReceivedMessage<Form> receivedMessage = (ReceivedMessage<Form>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "form\\FormRecevied.json"));
+            ReceivedMessage<FormResult> receivedMessage = (ReceivedMessage<FormResult>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "form\\FormRecevied.json"));
 
-            Form expectedForm = new Form()
+            FormResult expectedForm = new FormResult()
             {
                 Callback_id = "N7YcI5rAlX2sEFmh",
                 Message_id = 97,

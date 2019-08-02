@@ -41,7 +41,7 @@ namespace GapLib.Converters
                 case MessageType.Location:
                     return new ReceivedMessage<Location>(message).SetData(obj["data"]?.ToObject<Location>() ?? null);
                 case MessageType.SubmitForm:
-                    return new ReceivedMessage<Form>(message).SetData(obj["data"]?.ToObject<Form>() ?? null);
+                    return new ReceivedMessage<FormResult>(message).SetData(obj["data"]?.ToObject<FormResult>() ?? null);
                 case MessageType.TriggerButton:
                     break;
                 case MessageType.PayCallback:
