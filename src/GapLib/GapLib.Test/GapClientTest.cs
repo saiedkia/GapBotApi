@@ -13,7 +13,7 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Utils.ReadValue("token"));
             Message message = new Message()
             {
-                Chat_Id = "invalid id", // invalid chat id
+                ChatId = "invalid id", // invalid chat id
                 Data = "salam iran"
             };
 
@@ -41,7 +41,7 @@ namespace GapLib.Test
 
             Message message = new Message
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = "salam iran",
                 ReplyKeyboard = keyboard
             };
@@ -75,7 +75,7 @@ namespace GapLib.Test
             file.Desc = fileDescription;
             Message message = new Message(MessageType.Image)
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = Utils.Serialize(file)
             };
 
@@ -95,7 +95,7 @@ namespace GapLib.Test
             file.Desc = fileDescription;
             Message message = new Message(MessageType.File)
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = Utils.Serialize(file)
             };
 
@@ -114,7 +114,7 @@ namespace GapLib.Test
             file.Desc = fileDescription;
             Message message = new Message(MessageType.Audio)
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = Utils.Serialize(file)
             };
 
@@ -131,14 +131,14 @@ namespace GapLib.Test
 
             Message message = new Message
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = "salam donya"
             };
 
             PostResult postResult = gapClient.Send(message).Result;
             MessageId messageId = Newtonsoft.Json.JsonConvert.DeserializeObject<MessageId>(postResult.RawBody);
 
-            PostResult deleteResult = gapClient.Delete(ChatId, messageId.id).Result;
+            PostResult deleteResult = gapClient.Delete(ChatId, messageId.Id).Result;
 
             deleteResult.StatusCode.Should().Be(200);
         }
@@ -160,9 +160,9 @@ namespace GapLib.Test
         {
             GapClient gapClient = new GapClient(Token);
 
-            PostResult deleteResult = gapClient.SendAction(ChatId).Result;
+            PostResult postResult = gapClient.SendTypingAction(ChatId).Result;
 
-            deleteResult.StatusCode.Should().Be(200);
+            postResult.StatusCode.Should().Be(200);
         }
 
         [Fact]
@@ -171,10 +171,10 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             Invoice invoice = new Invoice()
             {
-                chat_id = ChatId,
-                amount = 20_000,
-                currency = Currency.USD,
-                description = "no comment"
+                ChatId = ChatId,
+                Amount = 20_000,
+                Currency = Currency.USD,
+                Description = "no comment"
             };
 
             PostResult invoiceResult = gapClient.Invoice(invoice).Result;
@@ -190,18 +190,18 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             Invoice invoice = new Invoice()
             {
-                chat_id = ChatId,
-                amount = 20_000,
-                currency = Currency.USD,
-                description = "no comment"
+                ChatId = ChatId,
+                Amount = 20_000,
+                Currency = Currency.USD,
+                Description = "no comment"
             };
 
             PostResult invoiceResult = gapClient.Invoice(invoice).Result;
 
             InvoiceVerfication invoiceVerfication = new InvoiceVerfication()
             {
-                chat_id = ChatId,
-                ref_id = invoiceResult.Id
+                ChatId = ChatId,
+                RefId = invoiceResult.Id
             };
 
             PostResult<InvoiceVerficationResult> verificationResult = gapClient.InvoiceVerification(invoiceVerfication).Result;
@@ -210,7 +210,7 @@ namespace GapLib.Test
             verificationResult.Id.Should().BeNull();
             verificationResult.ErrorMessage.Should().BeNull();
             verificationResult.StatusCode.Should().Be(200);
-            verificationResult.Data.status.Should().Be(InvoiceStatus.Error);
+            verificationResult.Data.Status.Should().Be(InvoiceStatus.Error);
         }
 
 
@@ -220,18 +220,18 @@ namespace GapLib.Test
             GapClient gapClient = new GapClient(Token);
             Invoice invoice = new Invoice()
             {
-                chat_id = ChatId,
-                amount = 20_000,
-                currency = Currency.USD,
-                description = "no comment"
+                ChatId = ChatId,
+                Amount = 20_000,
+                Currency = Currency.USD,
+                Description = "no comment"
             };
 
             PostResult invoiceResult = gapClient.Invoice(invoice).Result;
 
             InvoiceVerfication invoiceVerfication = new InvoiceVerfication()
             {
-                chat_id = ChatId,
-                ref_id = invoiceResult.Id
+                ChatId = ChatId,
+                RefId = invoiceResult.Id
             };
 
             PostResult<InvoiceVerficationResult> verificationResult = gapClient.InvoiceVerification(invoiceVerfication).Result;
@@ -240,7 +240,7 @@ namespace GapLib.Test
             verificationResult.Id.Should().BeNull();
             verificationResult.ErrorMessage.Should().BeNull();
             verificationResult.StatusCode.Should().Be(200);
-            verificationResult.Data.status.Should().Be(InvoiceStatus.Error);
+            verificationResult.Data.Status.Should().Be(InvoiceStatus.Error);
         }
 
         [Fact]
@@ -250,7 +250,7 @@ namespace GapLib.Test
 
             Message message = new Message()
             {
-                Chat_Id = ChatId,
+                ChatId = ChatId,
                 Data = "فرم زیر با پر نمایید"
             };
 
@@ -259,21 +259,21 @@ namespace GapLib.Test
             {
                 Label = "name",
                 Name = "name",
-                Type = FormType.text
+                Type = FormType.Text
             };
 
             FormItem checkboxForm = new FormItem()
             {
                 Label = "checkbox label",
                 Name = "chk",
-                Type = FormType.checkbox
+                Type = FormType.Checkbox
             };
 
             FormItemOptional listForm = new FormItemOptional()
             {
                 Label = "list label",
                 Name = "listLbl",
-                Type = FormType.select,
+                Type = FormType.Select,
                 Options = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("row1", "row 1"),

@@ -2,23 +2,24 @@
 <package >
   <metadata>
     <id>GapBotAPI</id>
-    <version>1.0.10</version>
+    <version>1.0.13</version>
     <authors>SaiedKia</authors>
     <owners>SaiedKia</owners>
-    <licenseUrl>https://github.com/saiedkia/GapBotApi/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://github.com/saiedkia/GapBotApi/blob/master/nuget/gapIcon.png?raw=true</iconUrl>
     <projectUrl>https://github.com/saiedkia/GapBotApi</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/saiedkia/GapBotApi/master/nuget/gapIcon.png?token=AJE24NGPI2T57IPVCVZDYWS5DJR5K</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Gap messenger bot api</description>
-    <releaseNotes>alpha version</releaseNotes>
+	<summary>Gap messenger bot api wrapper</summary>
+    <description>Gap messenger bot api wrapper</description>
+    <releaseNotes>alpha version, WIP</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>gap gap-messenger bot</tags>
-    <dependencies>
-      <dependency id="Newtonsoft.Json" version="12.0.2" />
-      <dependency id="NETStandard.Library" version="2.0.3" />
-    </dependencies>
-	</metadata>
-	<files>
+	<license type="expression">MIT</license>
+	<dependencies>
+		<dependency id="NETStandard.Library" version="2.0.3" />
+		<dependency id="Newtonsoft.Json" version="12.0.2" />
+	</dependencies>	
+  </metadata>
+  	<files>
 		<file src="..\src\GapLib\GapLib\bin\release\netstandard2.0\GapLib.dll" target="lib\netstandard2.0" />
 	</files>
 </package>

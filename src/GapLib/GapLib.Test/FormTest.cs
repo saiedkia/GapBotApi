@@ -14,8 +14,8 @@ namespace GapLib.Test
 
             FormResult expectedForm = new FormResult()
             {
-                Callback_id = "N7YcI5rAlX2sEFmh",
-                Message_id = 97,
+                CallbackId = "N7YcI5rAlX2sEFmh",
+                MessageId = 97,
                 Data = "name=Ehsan&married=y&city=mashhad&address=Iran&agree=true"
             };
 

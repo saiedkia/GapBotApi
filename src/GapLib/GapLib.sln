@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GapLib", "GapLib\GapLib.csproj", "{54E6AB3D-A754-48BE-B497-B1AA4AE8FC70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GapLib", "GapLib\GapLib.csproj", "{54E6AB3D-A754-48BE-B497-B1AA4AE8FC70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GapLib.Test", "GapLib.Test\GapLib.Test.csproj", "{CDDBD09D-7FDF-4FFD-B74B-594230E994EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GapLib.Test", "GapLib.Test\GapLib.Test.csproj", "{CDDBD09D-7FDF-4FFD-B74B-594230E994EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GapLib.Mvc", "GapLib.Binder\GapLib.Mvc.csproj", "{D2DA8C33-C691-416A-B652-FC2D53B4AB63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CDDBD09D-7FDF-4FFD-B74B-594230E994EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDDBD09D-7FDF-4FFD-B74B-594230E994EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDDBD09D-7FDF-4FFD-B74B-594230E994EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DA8C33-C691-416A-B652-FC2D53B4AB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DA8C33-C691-416A-B652-FC2D53B4AB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DA8C33-C691-416A-B652-FC2D53B4AB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DA8C33-C691-416A-B652-FC2D53B4AB63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

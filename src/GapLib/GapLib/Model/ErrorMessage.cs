@@ -2,6 +2,6 @@
 {
     public class ErrorMessage
     {
-        public string error { get; set; }
+        public string Error { get; set; }
     }
 }

@@ -1,8 +1,7 @@
 ﻿namespace GapLib.Model
 {
-    public class Message
+    public class Message : MessageBase
     {
-        public string Chat_Id { get; set; }
         public MessageType Type { get; private set; }
         public string Data { get; set; }
         public Form Form { get; set; }
@@ -16,7 +15,7 @@
 
         public Message(ReceivedMessage receivedMessage)
         {
-            Chat_Id = receivedMessage.Chat_Id;
+            ChatId = receivedMessage.ChatId;
             Type = receivedMessage.Type;
         }
     }

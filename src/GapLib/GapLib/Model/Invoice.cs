@@ -1,10 +1,9 @@
 ﻿namespace GapLib.Model
 {
-    public class Invoice
+    public class Invoice : MessageBase
     {
-        public string chat_id { get; set; }
-        public int amount { get; set; }
-        public Currency currency { get; set; }
-        public string description { get; set; }
+        public int Amount { get; set; }
+        public Currency Currency { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using GapLib.Converters;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+using System;
 using System.IO;
 
 namespace GapLib
@@ -30,14 +31,27 @@ namespace GapLib
 
         public static T Deserialize<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            try
+            {
+                JsonSerializerSettings setting = new JsonSerializerSettings()
+                {
+                    ContractResolver = new GapContractResolver()
+                };
+
+                return JsonConvert.DeserializeObject<T>(json, setting);
+            }
+
+            catch( Exception exp)
+            {
+                return default(T);
+            }
         }
 
         public static string Serialize(object obj)
         {
             JsonSerializerSettings setting = new JsonSerializerSettings()
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new GapContractResolver()
             };
 
             return JsonConvert.SerializeObject(obj, setting);

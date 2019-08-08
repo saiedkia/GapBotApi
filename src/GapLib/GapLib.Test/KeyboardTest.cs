@@ -10,7 +10,7 @@ namespace GapLib.Test
     public class KeyboardTest : BaseTest
     {
         [Fact]
-        public void Shold_client_receive_a_message_with_three_inline_button()
+        public void inline_keyboard_serialization_must_be_equal_to_expected()
         {
             InlineKeyboard inlineKeyboard = new InlineKeyboard();
             inlineKeyboard.AddRow(new List<InlineKeyboardItem>()

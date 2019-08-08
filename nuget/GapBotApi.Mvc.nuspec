@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GapBotApi.Mvc</id>
+    <version>1.0.2</version>
+    <authors>SaiedKia</authors>
+    <owners>SaiedKia</owners>
+    <projectUrl>https://github.com/saiedkia/GapBotApi</projectUrl>
+    <iconUrl>https://github.com/saiedkia/GapBotApi/blob/master/nuget/gapIcon.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>GapBotApi mvc extension for .NetCoreMvc</description>
+    <releaseNotes>GapBotApi mvc extension for .NetCoreMvc, WIP</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>gap gap-messenger bot gap-mvc</tags>
+	<license type="expression">MIT</license>
+    <dependencies>
+      <dependency id="GapBotAPI" version="1.0.11" />
+	  <dependency id="Microsoft.AspNetCore.App" version="2.2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+		<file src="..\src\GapLib\GapLib.Binder\bin\release\netcoreapp2.2\GapLib.Mvc.dll" target="lib\netstandard2.0" />
+	</files>
+</package>

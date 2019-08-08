@@ -7,8 +7,8 @@ namespace GapLib.Model
     public class FormResult
     {
         public string Data { get; set; }
-        public long Message_id { get; set; }
-        public string Callback_id { get; set; }
+        public long MessageId { get; set; }
+        public string CallbackId { get; set; }
 
         public List<KeyValuePair<string, string>> ParseData()
         {
@@ -32,18 +32,11 @@ namespace GapLib.Model
 
     public class Form : List<FormItem>
     {
-        //public List<FormItem> Items { get; set; }
-
-        public Form()
-        {
-            //Items = new List<FormItem>();
-        }
-
+        public Form() { }
         public void AddItem(FormItem item)
         {
             Add(item);
         }
-
     }
 
 
@@ -73,12 +66,12 @@ namespace GapLib.Model
 
     public enum FormType
     {
-        text,
-        radio,
-        select,
-        textarea,
-        checkbox,
-        inbuilt,
-        submit
+        Text,
+        Radio,
+        Select,
+        Textarea,
+        Checkbox,
+        Inbuilt,
+        Submit
     }
 }
