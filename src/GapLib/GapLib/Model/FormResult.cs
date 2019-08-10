@@ -17,12 +17,12 @@ namespace GapLib.Model
             if (Data == null)
                 return values;
 
-            string[] dataValues = Data.Split('&');
-            foreach (string item in dataValues)
+            string[] queryValues = Data.Split('&');
+            foreach (string item in queryValues)
             {
-                string[] kv = item.Split('=');
-                if (kv.Length == 2)
-                    values.Add(new KeyValuePair<string, string>(kv[0], kv[1]));
+                string[] keyValue = item.Split('=');
+                if (keyValue.Length == 2)
+                    values.Add(new KeyValuePair<string, string>(keyValue[0], keyValue[1]));
             }
 
 

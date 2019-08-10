@@ -1,4 +1,5 @@
-﻿using GapLib.Converters;
+﻿using GapLib.Builders;
+using GapLib.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace GapLib.Model
         public void AddRow(IEnumerable<InlineKeyboardItem> row)
         {
             Add(row.ToList());
+        }
+
+        public static InlineKeyboardBuilder Builder()
+        {
+            return new InlineKeyboardBuilder();
         }
     }
 
