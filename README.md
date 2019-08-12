@@ -3,6 +3,11 @@ Gap Messenger Bot Api in C#
 
 
 ### Usage
+- Install nuget package:
+```
+Install-Package GapBotApi
+```
+
 - Text message
 ```C#
 GapClient gapClient = new GapClient("gap access token");
@@ -49,7 +54,7 @@ PostResult invoiceResult = gapClient.Invoice(invoice).Result;
 ```
 
 ### MVC .NETCORE
-- Installation nuget package:
+- Install nuget package:
 ```
 Install-Package GapBotApi.Mvc
 ```
