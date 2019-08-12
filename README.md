@@ -49,8 +49,7 @@ PostResult invoiceResult = gapClient.Invoice(invoice).Result;
 ```
 
 ### MVC .NETCORE
-- Installation
-install nuget package:
+- Installation nuget package:
 ```
 Install-Package GapBotApi.Mvc
 ```
