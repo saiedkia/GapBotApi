@@ -23,19 +23,18 @@ namespace GapLib.Test
 
 
         [Fact]
-        public void Should_send_get_contanct_informations()
+        public void Should_send_an_get_contact_inline_button()
         {
             GapClient gapClient = new GapClient(Token);
             Message message = new Message()
             {
                 ChatId = ChatId,
-                ReplyKeyboard = ReplyKeyboard.Builder().AddGetContact("share phone").AddRow().AddGetLocation("share location").Build(),
-                Data = "send to me your phone or location"
+                ReplyKeyboard = ReplyKeyboard.Builder().AddGetContact("share phone").Build(),
+                Data = "let me khnow your phone number..."
             };
 
 
             PostResult postResult = gapClient.Send(message).Result;
-
             postResult.StatusCode.Should().Be(StatusCode.Success);
         }
 

@@ -11,6 +11,7 @@ namespace GapLib.Test
         public void Read_form_information()
         {
             ReceivedMessage<FormResult> receivedMessage = (ReceivedMessage<FormResult>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "form\\FormRecevied.json"));
+            int valuesCount = 5;
 
             FormResult expectedForm = new FormResult()
             {
@@ -20,6 +21,7 @@ namespace GapLib.Test
             };
 
             receivedMessage.Data.ParseData().Should().BeEquivalentTo(expectedForm.ParseData());
+            receivedMessage.Data.ParsedData.Count.Should().Be(valuesCount);
             Assert.Contains(new KeyValuePair<string, string>("name", "Ehsan"), receivedMessage.Data.ParseData());
         }
     }

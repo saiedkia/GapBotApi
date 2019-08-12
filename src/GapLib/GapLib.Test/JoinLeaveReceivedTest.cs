@@ -50,19 +50,5 @@ namespace GapLib.Test
 
             value.Should().BeEquivalentTo(expected);
         }
-
-
-        [Fact]
-        public void Xx()
-        {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived.json"));
-            ReceivedMessage expected = new ReceivedMessage
-            {
-                ChatId = "123123",
-                Type = MessageType.Join
-            };
-
-            value.Should().BeEquivalentTo(expected);
-        }
     }
 }

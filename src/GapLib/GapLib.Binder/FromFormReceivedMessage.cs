@@ -5,7 +5,7 @@ namespace GapLib.Mvc
 
     public class FromFormReceivedMessage : ModelBinderAttribute
     {
-        public FromFormReceivedMessage() :base(typeof(ReceivedMessageBinder))
+        public FromFormReceivedMessage() : base(typeof(ReceivedMessageBinder))
         {
 
         }

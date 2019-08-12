@@ -10,7 +10,7 @@ namespace GapLib.Test
     public class KeyboardTest : BaseTest
     {
         [Fact]
-        public void inline_keyboard_serialization_must_be_equal_to_expected()
+        public void Inline_keyboard_serialization_must_be_equal_to_expected()
         {
             InlineKeyboard inlineKeyboard = new InlineKeyboard();
             inlineKeyboard.AddRow(new List<InlineKeyboardItem>()
@@ -20,10 +20,24 @@ namespace GapLib.Test
                    InlineKeyboardItem.OpenUrl("bing", "https://bing.com")
             });
 
-            string result = Utils.Serialize(inlineKeyboard).Replace(" ", "");
-            string expected = Utils.ReadFile(JsonsDirectory + "text\\inlineKeyboard.txt").Replace("\n", "").Replace("\r", "").Replace(" ", "");
+            string result = Utils.Serialize(inlineKeyboard).Replace(" ", "").ToLower();
+            string expected = Utils.ReadFile(JsonsDirectory + "text\\inlineKeyboard.txt").Replace("\n", "").Replace("\r", "").Replace(" ", "").ToLower();
 
             result.Should().Be(expected);
         }
+
+
+        [Fact]
+        public void Inline_keyboard_serialization_must_be_equal_to_expected_with_keyboard_builder()
+        {
+            InlineKeyboard inlineKeyboard = InlineKeyboard.Builder().AddButton("simple button", "btnSmpTapped").AddPayment("payment", 5000, "GUID/refId", "give me that..").AddOpenUrl("bing", "https://bing.com").Build();
+
+            string result = Utils.Serialize(inlineKeyboard).Replace(" ", "").ToLower();
+            string expected = Utils.ReadFile(JsonsDirectory + "text\\inlineKeyboard.txt").Replace("\n", "").Replace("\r", "").Replace(" ", "").ToLower();
+
+            result.Should().Be(expected);
+        }
+
+
     }
 }

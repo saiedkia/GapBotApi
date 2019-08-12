@@ -9,6 +9,7 @@ namespace GapLib.Model
         public string Data { get; set; }
         public long MessageId { get; set; }
         public string CallbackId { get; set; }
+        public List<KeyValuePair<string, string>> ParsedData => ParseData();
 
         public List<KeyValuePair<string, string>> ParseData()
         {
@@ -23,6 +24,8 @@ namespace GapLib.Model
                 string[] keyValue = item.Split('=');
                 if (keyValue.Length == 2)
                     values.Add(new KeyValuePair<string, string>(keyValue[0], keyValue[1]));
+                else
+                    values.Add(new KeyValuePair<string, string>(keyValue[0], ""));
             }
 
 

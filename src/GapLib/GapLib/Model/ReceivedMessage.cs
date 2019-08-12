@@ -41,23 +41,6 @@ namespace GapLib.Model
             Data = data;
             return this;
         }
-
-
-        //public static explicit operator ReceivedMessage<T>(FromFormReceivedMessage message)
-        //{
-        //    ReceivedMessage<T> tmpMessage = new ReceivedMessage<T>();
-        //    tmpMessage.ChatId = message.ChatId;
-        //    tmpMessage.From = message.From;
-        //    tmpMessage.Type = message.Type;
-        //    if (!string.IsNullOrEmpty(message.Data))
-        //        if (message.Data.Trim().StartsWith("{") && message.Data.Trim().EndsWith("}"))
-        //            tmpMessage.Data = Utils.Deserialize<T>(message.Data);
-        //        else
-        //            tmpMessage.Data = (T)Convert.ChangeType(message.Data, typeof(T));
-
-
-        //    return tmpMessage;
-        //}
     }
 
 

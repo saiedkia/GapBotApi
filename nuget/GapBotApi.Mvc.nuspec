@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GapBotApi.Mvc</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>SaiedKia</authors>
     <owners>SaiedKia</owners>
     <projectUrl>https://github.com/saiedkia/GapBotApi</projectUrl>
@@ -14,7 +14,7 @@
     <tags>gap gap-messenger bot gap-mvc</tags>
 	<license type="expression">MIT</license>
     <dependencies>
-      <dependency id="GapBotAPI" version="1.0.13" />
+      <dependency id="GapBotAPI" version="1.0.14" />
 	  <dependency id="Microsoft.AspNetCore.App" version="2.2.0" />
     </dependencies>
   </metadata>

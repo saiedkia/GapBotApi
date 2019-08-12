@@ -15,7 +15,7 @@ namespace GapLib.Test
 
             ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
-                ChatId = "123123",
+                ChatId = ChatId,
                 Type = MessageType.Text,
                 Data = "hi saied!!!"
             };
@@ -23,54 +23,6 @@ namespace GapLib.Test
 
             value.Should().BeEquivalentTo(expected);
         }
-
-        //[Fact]
-        //public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_string()
-        //{
-        //    FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
-        //    {
-        //        ChatId = "123123",
-        //        Data = "salam",
-        //        Type = MessageType.Text
-        //    };
-
-        //    ReceivedMessage<string> message = (ReceivedMessage<string>)receivedMessage;
-
-        //    ReceivedMessage<string> expected = new ReceivedMessage<string>()
-        //    {
-        //        Data = "salam",
-        //        Type = MessageType.Text,
-        //        ChatId = "123123",
-        //    };
-
-
-        //    message.Should().BeEquivalentTo(expected);
-        //}
-
-
-
-        //[Fact]
-        //public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_int()
-        //{
-        //    FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
-        //    {
-        //        ChatId = "123123",
-        //        Data = "123123",
-        //        Type = MessageType.Text
-        //    };
-
-        //    ReceivedMessage<int> message = (ReceivedMessage<int>)receivedMessage;
-
-        //    ReceivedMessage<int> expected = new ReceivedMessage<int>()
-        //    {
-        //        Data = 123123,
-        //        Type = MessageType.Text,
-        //        ChatId = "123123",
-        //    };
-
-
-        //    message.Should().BeEquivalentTo(expected);
-        //}
 
         [Fact]
         public void Should_chat_id_deserialized_successfully_from_json()
@@ -79,7 +31,7 @@ namespace GapLib.Test
 
             ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
-                ChatId = "123123",
+                ChatId = ChatId,
                 Type = MessageType.Text,
                 Data = "hi saied!!!"
             };
@@ -87,22 +39,5 @@ namespace GapLib.Test
 
             value.Should().BeEquivalentTo(expected);
         }
-
-
-        //[Fact]
-        //public void Should_chat_id_deserialized_successfully_in_FromFormReceived()
-        //{
-        //    FromFormReceivedMessage value = Utils.Deserialize<FromFormReceivedMessage>((Utils.ReadFile(JsonsDirectory + "text\\textreceived.json")));
-
-        //    ReceivedMessage<string> expected = new ReceivedMessage<string>
-        //    {
-        //        ChatId = "123123",
-        //        Type = MessageType.Text,
-        //        Data = "hi saied!!!"
-        //    };
-
-
-        //    value.Should().BeEquivalentTo(expected);
-        //}
     }
 }

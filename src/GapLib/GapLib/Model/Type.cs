@@ -34,15 +34,11 @@ namespace GapLib.Model
                 case MessageType.Text:
                     break;
                 case MessageType.Image:
-                    break;
                 case MessageType.Audio:
-                    break;
                 case MessageType.Video:
-                    break;
                 case MessageType.Voice:
-                    break;
                 case MessageType.File:
-                    break;
+                    return typeof(File);
                 case MessageType.Contact:
                     return typeof(Contact);
                 case MessageType.Location:

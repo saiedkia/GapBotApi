@@ -59,13 +59,22 @@ namespace GapLib.Builders
         }
 
 
-        public InlineKeyboardBuilder AddOpenUrl(string text, string callbackData, string description = null)
+        public InlineKeyboardBuilder AddButton(string text, string callbackData, string description = null)
         {
             InlineKeyboardItem item = InlineKeyboardItem.Simple(text, callbackData, description);
             rowItems.Add(item);
 
             return this;
         }
+
+        public InlineKeyboardBuilder AddButton(string text)
+        {
+            InlineKeyboardItem item = InlineKeyboardItem.Simple(text, text, null);
+            rowItems.Add(item);
+
+            return this;
+        }
+
 
         public InlineKeyboard Build()
         {
