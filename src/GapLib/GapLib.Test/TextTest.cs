@@ -9,11 +9,13 @@ namespace GapLib.Test
         [Fact]
         public void Should_message_equal_hi_saied()
         {
-            ReceivedMessage<string> value = (ReceivedMessage<string>)ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "text\\textreceived.json"));
+            //ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "text\\textreceived.json"));
+            string message = Utils.ReadFile(JsonsDirectory + "text\\textreceived.json");
+            ReceivedMessage value = Utils.Deserialize<ReceivedMessage>(message);
 
             ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
-                Chat_Id = "123123",
+                ChatId = ChatId,
                 Type = MessageType.Text,
                 Data = "hi saied!!!"
             };
@@ -23,51 +25,19 @@ namespace GapLib.Test
         }
 
         [Fact]
-        public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_string()
+        public void Should_chat_id_deserialized_successfully_from_json()
         {
-            FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
-            {
-                Chat_Id = "123123",
-                Data = "salam",
-                Type = MessageType.Text
-            };
+            ReceivedMessage<string> value = Utils.Deserialize<ReceivedMessage<string>>((Utils.ReadFile(JsonsDirectory + "text\\textreceived.json")));
 
-            ReceivedMessage<string> message = (ReceivedMessage<string>)receivedMessage;
-
-            ReceivedMessage<string> expected = new ReceivedMessage<string>()
+            ReceivedMessage<string> expected = new ReceivedMessage<string>
             {
-                Data = "salam",
+                ChatId = ChatId,
                 Type = MessageType.Text,
-                Chat_Id = "123123",
+                Data = "hi saied!!!"
             };
 
 
-            message.Should().BeEquivalentTo(expected);
-        }
-
-
-
-        [Fact]
-        public void Should_convert_FromFormRecevedMessage_to_RecevidMessage_data_type_as_int()
-        {
-            FromFormReceivedMessage receivedMessage = new FromFormReceivedMessage()
-            {
-                Chat_Id = "123123",
-                Data = "123123",
-                Type = MessageType.Text
-            };
-
-            ReceivedMessage<int> message = (ReceivedMessage<int>)receivedMessage;
-
-            ReceivedMessage<int> expected = new ReceivedMessage<int>()
-            {
-                Data = 123123,
-                Type = MessageType.Text,
-                Chat_Id = "123123",
-            };
-
-
-            message.Should().BeEquivalentTo(expected);
+            value.Should().BeEquivalentTo(expected);
         }
     }
 }

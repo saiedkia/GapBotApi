@@ -3,9 +3,9 @@
     // TODO : error message
     public class PostResult
     {
+        public string Id { get; set; }
         public StatusCode StatusCode { get; set; }
         public string RawBody { get; set; }
-        public string Id { get; set; }
         public string ErrorMessage { get; set; }
 
         public PostResult() { }
@@ -13,16 +13,16 @@
         {
             StatusCode = StatusCode.Genereic;
             RawBody = body;
-            Id = Utils.Deserialize<MessageId>(RawBody).id;
-            ErrorMessage = Utils.Deserialize<ErrorMessage>(RawBody).error;
+            Id = Utils.Deserialize<MessageId>(RawBody)?.Id;
+            ErrorMessage = Utils.Deserialize<ErrorMessage>(RawBody)?.Error;
         }
 
         public PostResult(StatusCode statusCode, string body)
         {
             StatusCode = statusCode;
             RawBody = body;
-            Id = Utils.Deserialize<MessageId>(RawBody).id;
-            ErrorMessage = Utils.Deserialize<ErrorMessage>(RawBody).error;
+            Id = Utils.Deserialize<MessageId>(RawBody)?.Id;
+            ErrorMessage = Utils.Deserialize<ErrorMessage>(RawBody)?.Error;
         }
 
 
@@ -31,6 +31,18 @@
     public class PostResult<T> : PostResult
     {
         public T Data { get; set; }
+
+
+        public PostResult() { }
+        public PostResult(string body) : base(body)
+        {
+            Data = Utils.Deserialize<T>(body);
+        }
+
+        public PostResult(StatusCode statusCode, string body) : base(statusCode, body)
+        {
+            Data = Utils.Deserialize<T>(body);
+        }
     }
 
 

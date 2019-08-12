@@ -20,5 +20,40 @@ namespace GapLib.Test
 
             receivedMessage.Data.Should().BeEquivalentTo(expectedContact);
         }
+
+
+        [Fact]
+        public void Should_send_an_get_contact_inline_button()
+        {
+            GapClient gapClient = new GapClient(Token);
+            Message message = new Message()
+            {
+                ChatId = ChatId,
+                ReplyKeyboard = ReplyKeyboard.Builder().AddGetContact("share phone").Build(),
+                Data = "let me khnow your phone number..."
+            };
+
+
+            PostResult postResult = gapClient.Send(message).Result;
+            postResult.StatusCode.Should().Be(StatusCode.Success);
+        }
+
+
+        [Fact]
+        public void Should_send_2X2_reply_keyboard()
+        {
+            GapClient gapClient = new GapClient(Token);
+            Message message = new Message()
+            {
+                ChatId = ChatId,
+                ReplyKeyboard = ReplyKeyboard.Builder().AddGetContact("share phone").Add("button two").AddRow().AddRow().AddGetLocation("share location").Add("button four").Build(),
+                Data = "send to me your phone or location"
+            };
+
+
+            PostResult postResult = gapClient.Send(message).Result;
+
+            postResult.StatusCode.Should().Be(StatusCode.Success);
+        }
     }
 }

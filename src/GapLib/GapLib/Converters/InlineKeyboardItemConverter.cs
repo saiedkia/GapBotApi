@@ -2,9 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace GapLib.Converters
 {
@@ -28,7 +26,7 @@ namespace GapLib.Converters
                 if (info.GetValue(replyKeyboard) == null) continue;
                 else
                 {
-                    jsonObject.Add(info.Name.ToLower(), info.GetValue(replyKeyboard).ToString());
+                    jsonObject.Add(GapContractResolver.GetGapNamingConvention(info.Name), info.GetValue(replyKeyboard).ToString());
                 }
 
             jsonObject.WriteTo(writer);

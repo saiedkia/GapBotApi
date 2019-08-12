@@ -1,13 +1,11 @@
 ﻿using GapLib.Converters;
 using Newtonsoft.Json;
-using System;
 
 namespace GapLib.Model
 {
     [JsonConverter(typeof(ReceivedMessageConverter))]
-    public class ReceivedMessage
+    public class ReceivedMessage : MessageBase
     {
-        public string Chat_Id { get; set; }
         public MessageType Type { get; set; }
         public From From { get; set; }
 
@@ -22,7 +20,7 @@ namespace GapLib.Model
         }
     }
 
-    [JsonConverter(typeof(ReceivedMessageGenericConverter))]
+    //[JsonConverter(typeof(ReceivedMessageGenericConverter))]
     public class ReceivedMessage<T> : ReceivedMessage
     {
 
@@ -32,7 +30,7 @@ namespace GapLib.Model
 
         public ReceivedMessage(ReceivedMessage message)
         {
-            Chat_Id = message.Chat_Id;
+            ChatId = message.ChatId;
             From = message.From;
             Type = message.Type;
 
@@ -42,23 +40,6 @@ namespace GapLib.Model
         {
             Data = data;
             return this;
-        }
-
-
-        public static explicit operator ReceivedMessage<T>(FromFormReceivedMessage message)
-        {
-            ReceivedMessage<T> tmpMessage = new ReceivedMessage<T>();
-            tmpMessage.Chat_Id = message.Chat_Id;
-            tmpMessage.From = message.From;
-            tmpMessage.Type = message.Type;
-            if (!string.IsNullOrEmpty(message.Data))
-                if (message.Data.Trim().StartsWith("{") && message.Data.Trim().EndsWith("}"))
-                    tmpMessage.Data = Utils.Deserialize<T>(message.Data);
-                else
-                    tmpMessage.Data = (T)Convert.ChangeType(message.Data, typeof(T));
-
-
-            return tmpMessage;
         }
     }
 

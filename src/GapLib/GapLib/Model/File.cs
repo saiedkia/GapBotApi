@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GapLib.Model
 {
     public class File
     {
         public Dictionary<string, string> Screenshots { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
         public MessageType Type { get; set; }
         public Dictionary<string, string> Tags { get; set; }
         public string Path { get; set; }

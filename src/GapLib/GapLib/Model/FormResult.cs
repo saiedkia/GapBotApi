@@ -7,8 +7,9 @@ namespace GapLib.Model
     public class FormResult
     {
         public string Data { get; set; }
-        public long Message_id { get; set; }
-        public string Callback_id { get; set; }
+        public long MessageId { get; set; }
+        public string CallbackId { get; set; }
+        public List<KeyValuePair<string, string>> ParsedData => ParseData();
 
         public List<KeyValuePair<string, string>> ParseData()
         {
@@ -17,12 +18,14 @@ namespace GapLib.Model
             if (Data == null)
                 return values;
 
-            string[] dataValues = Data.Split('&');
-            foreach (string item in dataValues)
+            string[] queryValues = Data.Split('&');
+            foreach (string item in queryValues)
             {
-                string[] kv = item.Split('=');
-                if (kv.Length == 2)
-                    values.Add(new KeyValuePair<string, string>(kv[0], kv[1]));
+                string[] keyValue = item.Split('=');
+                if (keyValue.Length == 2)
+                    values.Add(new KeyValuePair<string, string>(keyValue[0], keyValue[1]));
+                else
+                    values.Add(new KeyValuePair<string, string>(keyValue[0], ""));
             }
 
 
@@ -32,18 +35,11 @@ namespace GapLib.Model
 
     public class Form : List<FormItem>
     {
-        //public List<FormItem> Items { get; set; }
-
-        public Form()
-        {
-            //Items = new List<FormItem>();
-        }
-
+        public Form() { }
         public void AddItem(FormItem item)
         {
             Add(item);
         }
-
     }
 
 
@@ -73,12 +69,12 @@ namespace GapLib.Model
 
     public enum FormType
     {
-        text,
-        radio,
-        select,
-        textarea,
-        checkbox,
-        inbuilt,
-        submit
+        Text,
+        Radio,
+        Select,
+        Textarea,
+        Checkbox,
+        Inbuilt,
+        Submit
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GapLib.Model
+﻿namespace GapLib.Model
 {
     public class MessageId
     {
-        public string id { get; set; }
+        public string Id { get; set; }
     }
 }

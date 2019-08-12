@@ -12,7 +12,7 @@ namespace GapLib.Test
             ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
-                Chat_Id = "123123",
+                ChatId = "123123",
                 Type = MessageType.Join
             };
 
@@ -25,7 +25,7 @@ namespace GapLib.Test
             ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\LeaveReceived.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
-                Chat_Id = "123123",
+                ChatId = "123123",
                 Type = MessageType.Leave
             };
 
@@ -38,7 +38,7 @@ namespace GapLib.Test
             ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived_withFrom.json"));
             ReceivedMessage expected = new ReceivedMessage
             {
-                Chat_Id = "123123",
+                ChatId = "123123",
                 Type = MessageType.Join,
                 From = new From()
                 {
@@ -46,20 +46,6 @@ namespace GapLib.Test
                     Username = "userName",
                     Name = "saiedkia"
                 }
-            };
-
-            value.Should().BeEquivalentTo(expected);
-        }
-
-
-        [Fact]
-        public void Xx()
-        {
-            ReceivedMessage value = ReceivedMessage.Parse(Utils.ReadFile(JsonsDirectory + "JoinLeave\\JoinReceived.json"));
-            ReceivedMessage expected = new ReceivedMessage
-            {
-                Chat_Id = "123123",
-                Type = MessageType.Join
             };
 
             value.Should().BeEquivalentTo(expected);

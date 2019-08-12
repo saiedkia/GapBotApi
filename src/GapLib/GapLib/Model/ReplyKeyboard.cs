@@ -1,4 +1,5 @@
-﻿using GapLib.Converters;
+﻿using GapLib.Builders;
+using GapLib.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +8,29 @@ namespace GapLib.Model
 {
     public class ReplyKeyboard
     {
-        public List<List<ReplyKeyboardItem>> keyboard { get; set; }
+        public List<List<ReplyKeyboardItem>> Keyboard { get; set; }
 
         public ReplyKeyboard()
         {
-            keyboard = new List<List<ReplyKeyboardItem>>();
+            Keyboard = new List<List<ReplyKeyboardItem>>();
         }
 
         public void AddRow(IEnumerable<ReplyKeyboardItem> rowItems)
         {
-            keyboard.Add(rowItems.ToList());
+            Keyboard.Add(rowItems.ToList());
+        }
+
+        public static ReplyKeyboardBuilder Builder()
+        {
+            return new ReplyKeyboardBuilder();
         }
     }
 
     [JsonConverter(typeof(ReplyKeyboardConverter))]
     public class ReplyKeyboardItem
     {
-        public string Key { get; protected set; }
-        public string Value { get; protected set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
 
 
         public ReplyKeyboardItem(string key, string value)

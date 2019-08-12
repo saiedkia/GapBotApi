@@ -1,4 +1,5 @@
-﻿using GapLib.Converters;
+﻿using GapLib.Builders;
+using GapLib.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ namespace GapLib.Model
 {
     public class InlineKeyboard : List<List<InlineKeyboardItem>>
     {
-        //public List<InlineKeyboardItem> inline_keyboard { get; set; }
-
         public void AddRow(IEnumerable<InlineKeyboardItem> row)
         {
             Add(row.ToList());
+        }
+
+        public static InlineKeyboardBuilder Builder()
+        {
+            return new InlineKeyboardBuilder();
         }
     }
 
@@ -19,13 +23,13 @@ namespace GapLib.Model
     public class InlineKeyboardItem
     {
         public string Text { get; set; }
-        public string Cb_data { get; set; }
+        public string CbData { get; set; }
         public string Url { get; set; }
-        public OpenMode? Open_in { get; set; }
+        public OpenMode? OpenIn { get; set; }
         public int? Amount { get; set; }
         public Currency? Currency { get; set; }
-        public string ref_id { get; set; }
-        public string desc { get; set; }
+        public string RefId { get; set; }
+        public string Desc { get; set; }
 
         public InlineKeyboardItem() { }
 
@@ -34,8 +38,8 @@ namespace GapLib.Model
             InlineKeyboardItem keyboard = new InlineKeyboardItem()
             {
                 Text = text,
-                Cb_data = callbackData,
-                desc = description
+                CbData = callbackData,
+                Desc = description
             };
 
 
@@ -48,23 +52,23 @@ namespace GapLib.Model
             {
                 Amount = amount,
                 Currency = currency,
-                ref_id = refId,
-                desc = description,
+                RefId = refId,
+                Desc = description,
                 Text = buttonText,
             };
 
             return keyboard;
         }
 
-        public static InlineKeyboardItem OpenUrl(string buttonText, string url, OpenMode openMode = OpenMode.webview, string description = null, string cb_dataTrigger = null)
+        public static InlineKeyboardItem OpenUrl(string buttonText, string url, OpenMode openMode = OpenMode.Webview, string description = null, string callbackDataTrigger = null)
         {
             InlineKeyboardItem keyboard = new InlineKeyboardItem
             {
                 Url = url,
-                Open_in = openMode,
-                desc = description,
+                OpenIn = openMode,
+                Desc = description,
                 Text = buttonText,
-                Cb_data = cb_dataTrigger
+                CbData = callbackDataTrigger
             };
 
             return keyboard;
@@ -73,11 +77,11 @@ namespace GapLib.Model
 
     public enum OpenMode
     {
-        webview_full,
-        inline_browser,
-        webview_with_heade,
-        webview,
-        browser
+        WebviewFull,
+        InlineBrowser,
+        WebviewWithHeader,
+        Webview,
+        Browser
     }
 
 
