@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GapBotAPI</id>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <authors>SaiedKia</authors>
     <owners>SaiedKia</owners>
     <iconUrl>https://github.com/saiedkia/GapBotApi/blob/master/nuget/gapIcon.png?raw=true</iconUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<summary>Gap messenger bot api wrapper</summary>
     <description>Gap messenger bot api wrapper</description>
-    <releaseNotes>alpha version, WIP</releaseNotes>
+    <releaseNotes>beta version, WIP</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>gap gap-messenger bot</tags>
 	<license type="expression">MIT</license>

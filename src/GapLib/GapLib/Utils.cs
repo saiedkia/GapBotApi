@@ -47,6 +47,19 @@ namespace GapLib
             }
         }
 
+        public static T DeserializeWithDefaultContract<T>(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+
+            catch (Exception exp)
+            {
+                return default(T);
+            }
+        }
+
         public static string Serialize(object obj)
         {
             JsonSerializerSettings setting = new JsonSerializerSettings()

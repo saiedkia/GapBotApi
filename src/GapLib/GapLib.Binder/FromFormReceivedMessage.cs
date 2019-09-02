@@ -3,9 +3,9 @@
 namespace GapLib.Mvc
 {
 
-    public class FromFormReceivedMessage : ModelBinderAttribute
+    public class FromFormReceivedMessageAttribute : ModelBinderAttribute
     {
-        public FromFormReceivedMessage() : base(typeof(ReceivedMessageBinder))
+        public FromFormReceivedMessageAttribute() : base(typeof(ReceivedMessageBinder))
         {
 
         }

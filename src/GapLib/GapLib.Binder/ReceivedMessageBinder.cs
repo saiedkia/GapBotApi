@@ -17,7 +17,7 @@ namespace GapLib.Mvc
             bindingContext.Result = ModelBindingResult.Success(receivedMessage);
 
             return Task.CompletedTask;
-            }
+        }
     }
 
 
@@ -28,11 +28,11 @@ namespace GapLib.Mvc
             JObject jtoken = new JObject();
             foreach (string key in collection.Keys)
             {
-                collection.TryGetValue(key, out StringValues Val);
-                jtoken.Add(key, Val[0]);
+                if (collection.TryGetValue(key, out StringValues Val))
+                    jtoken.Add(key, Val[0]);
             }
 
-            return Utils.Serialize(jtoken);
+            return jtoken.ToString();
         }
     }
 }

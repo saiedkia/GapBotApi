@@ -43,7 +43,7 @@ namespace GapLib.Test
                 From = new From()
                 {
                     Id = 4455,
-                    Username = "userName",
+                    User = "userName",
                     Name = "saiedkia"
                 }
             };

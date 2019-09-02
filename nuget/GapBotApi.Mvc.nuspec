@@ -14,7 +14,7 @@
     <tags>gap gap-messenger bot gap-mvc</tags>
 	<license type="expression">MIT</license>
     <dependencies>
-      <dependency id="GapBotAPI" version="1.0.14" />
+      <dependency id="GapBotAPI" version="1.0.15" />
 	  <dependency id="Microsoft.AspNetCore.App" version="2.2.0" />
     </dependencies>
   </metadata>

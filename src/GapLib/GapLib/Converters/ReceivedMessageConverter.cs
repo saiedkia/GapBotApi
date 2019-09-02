@@ -21,15 +21,20 @@ namespace GapLib.Converters
             ReceivedMessage receivedMessage = (ReceivedMessage)Activator.CreateInstance(typeof(ReceivedMessage<>).MakeGenericType(type.GetMessageType()));
 
             receivedMessage.ChatId = obj["chat_id"]?.ToString();
-            receivedMessage.From = obj["from"]?.ToObject<From>();
+            if (obj["from"] != null)
+                receivedMessage.From = JObject.Parse(obj["from"].ToObject<string>())?.ToObject<From>();
 
             receivedMessage.Type = type;
             MethodInfo methodSetData = receivedMessage.GetType().GetMethod("SetData");
 
-            object data = obj["data"]?.ToObject(type.GetMessageType());
-            if (data != null) 
-                methodSetData.Invoke(receivedMessage, new object[]{ data});
-            //(receivedMessage).SetData(obj["data"]?.ToObject(type.GetMessageType()) ?? null);
+            object data = null;
+            if (type == MessageType.Text)
+                data = obj["data"].ToObject<string>();
+            else if (obj["data"] != null)
+                data = JObject.Parse(obj["data"]?.ToObject<string>())?.ToObject(type.GetMessageType());
+
+            if (data != null)
+                methodSetData.Invoke(receivedMessage, new object[] { data });
 
 
             return receivedMessage;
